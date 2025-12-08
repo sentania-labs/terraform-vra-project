@@ -26,7 +26,7 @@ jobs:
   readme:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
@@ -85,7 +85,7 @@ jobs:
     
       - name: Update PR
         if: always()
-        uses: actions/github-script@latest
+        uses: actions/github-script@v8
         with:
           script: |
             const output = `#### Terraform Linting: \`${{ steps.lint.outcome }}\`
