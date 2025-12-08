@@ -8,7 +8,7 @@ terraform {
 }
 
 module "project" {
-  source = "../../"
+  source      = "../../"
   name        = var.project_name
   description = var.description
 
