@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Generate terraform documentation
-        uses: terraform-docs/gh-actions@latest
+        uses: terraform-docs/gh-actions@v1.4
         with:
           working-dir: .
           output-file: README.md
@@ -49,7 +49,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - uses: hashicorp/setup-terraform@latest
+      - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
 
@@ -60,7 +60,7 @@ jobs:
           key: ubuntu-latest-tflint-${{ hashFiles('.tflint.hcl') }}
       
       - name: Setup TFLint 
-        uses: terraform-linters/setup-tflint@latest
+        uses: terraform-linters/setup-tflint@v6
         with:
           tflint_version: v0.60.0
     
