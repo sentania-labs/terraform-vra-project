@@ -28,15 +28,15 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_administrators"></a> [administrators](#input\_administrators) | List of administrator principals for the project | `list(string)` | n/a | yes |
-| <a name="input_basename"></a> [basename](#input\_basename) | n/a | `string` | n/a | yes |
+| <a name="input_administrators"></a> [administrators](#input\_administrators) | List of administrator principals for the project (UPN Format) | `list(string)` | n/a | yes |
+| <a name="input_basename"></a> [basename](#input\_basename) | Naming schema for this project to enforce | `string` | n/a | yes |
 | <a name="input_cloud_zone_ids"></a> [cloud\_zone\_ids](#input\_cloud\_zone\_ids) | List of cloud zone IDs to assign to the project | `list(string)` | n/a | yes |
-| <a name="input_description"></a> [description](#input\_description) | n/a | `string` | n/a | yes |
-| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `string` | n/a | yes |
+| <a name="input_description"></a> [description](#input\_description) | A description for this Project | `string` | `"This project was created by TF - Do not edit!"` | no |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The project name | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_project"></a> [project](#output\_project) | n/a |
+| <a name="output_project"></a> [project](#output\_project) | An object that allows referencing to the Automation Project created by name or id |
 <!-- END_TF_DOCS -->
