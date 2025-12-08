@@ -16,7 +16,7 @@ permissions:
   pull-requests: write
 
 env:
-  TERRAFORM_VERSION: 1.6
+  TERRAFORM_VERSION: 1.14
 
 defaults:
   run:
@@ -26,14 +26,14 @@ jobs:
   readme:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@latest
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Generate terraform documentation
-        uses: terraform-docs/gh-actions@main
+        uses: terraform-docs/gh-actions@latest
         with:
           working-dir: .
           output-file: README.md
@@ -45,24 +45,24 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@latest
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - uses: hashicorp/setup-terraform@v2
+      - uses: hashicorp/setup-terraform@latest
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
 
       - name: Cache plugin dir 
-        uses: actions/cache@v3
+        uses: actions/cache@latest
         with:
           path: ~/.tflint.d/plugins
           key: ubuntu-latest-tflint-${{ hashFiles('.tflint.hcl') }}
       
       - name: Setup TFLint 
-        uses: terraform-linters/setup-tflint@v3.1.0
+        uses: terraform-linters/setup-tflint@latest
         with:
-          tflint_version: v0.47.0
+          tflint_version: v0.60.0
     
       - name: Run TFLint
         id: lint
@@ -85,7 +85,7 @@ jobs:
     
       - name: Update PR
         if: always()
-        uses: actions/github-script@v7
+        uses: actions/github-script@latest
         with:
           script: |
             const output = `#### Terraform Linting: \`${{ steps.lint.outcome }}\`

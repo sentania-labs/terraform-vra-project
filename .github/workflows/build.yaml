@@ -14,14 +14,14 @@ jobs:
     if: github.event.pull_request.merged == true 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@latest
       with:
         ref: main
         fetch-depth: 0
     
     - name: Bump version and push tag
       id: tag
-      uses: anothrNick/github-tag-action@1.64.0 
+      uses: anothrNick/github-tag-action@latest
       env:
         DEFAULT_BRANCH: main
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
