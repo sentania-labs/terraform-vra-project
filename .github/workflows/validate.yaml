@@ -33,7 +33,7 @@ jobs:
           fetch-depth: 0
 
       - name: Generate terraform documentation
-        uses: terraform-docs/gh-actions@v1.4
+        uses: terraform-docs/gh-actions@v1.4.1
         with:
           working-dir: .
           output-file: README.md
@@ -62,7 +62,7 @@ jobs:
       - name: Setup TFLint 
         uses: terraform-linters/setup-tflint@v6
         with:
-          tflint_version: v0.60.0
+          tflint_version: v0.53.0
     
       - name: Run TFLint
         id: lint
