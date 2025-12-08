@@ -54,7 +54,7 @@ jobs:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
 
       - name: Cache plugin dir 
-        uses: actions/cache@latest
+        uses: actions/cache@v4
         with:
           path: ~/.tflint.d/plugins
           key: ubuntu-latest-tflint-${{ hashFiles('.tflint.hcl') }}
