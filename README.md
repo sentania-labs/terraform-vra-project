@@ -1,5 +1,5 @@
 # terraform-vra-vmapps-project
-
+This module is not feature complete for this resource: https://registry.terraform.io/providers/vmware/vra/latest/docs/resources/vra_project, It works for my lab, and I'll get around to updating it.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
