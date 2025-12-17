@@ -91,12 +91,12 @@ variable "constraints" {
 }
 
 variable "shared_resources" {
-  type         = bool
+  type        = bool
   default     = false
   description = "Determines if resources are visble only to the owner of them."
 }
 variable "operation_timeout" {
-  type         = string
+  type        = string
   default     = 6000
   description = "Execution timeout for the project"
 }
