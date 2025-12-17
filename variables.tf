@@ -19,38 +19,90 @@ variable "cloud_zone_ids" {
   description = "List of cloud zone IDs to assign to the project"
 }
 
-variable "administrator_roles" {
-  type = list(object({
-    email = string
-    type  = string # USER or GROUP
-  }))
-  description = "Administrators assigned to the project (users or groups)"
-  default     = []
+variable "placement_policy" {
+  type        = string
+  description = "Placement policy applied when selecting a cloud zone for provisioning. Valid values are DEFAULT or SPREAD."
+  default     = "DEFAULT"
+
+  validation {
+    condition     = contains(["DEFAULT", "SPREAD"], var.placement_policy)
+    error_message = "placement_policy must be one of: DEFAULT or SPREAD."
+  }
 }
 
-variable "member_roles" {
-  type = list(object({
-    email = string
-    type  = string # USER or GROUP
-  }))
-  description = "Members assigned to the project (users or groups)"
-  default     = []
+variable "roles" {
+  description = "All users or groups must be defined in email/UPN format as expected by the identity provider"
+  type = object({
+    administrators = list(object({
+      email = string
+      type  = string
+    }))
+    members = list(object({
+      email = string
+      type  = string
+    }))
+    supervisors = list(object({
+      email = string
+      type  = string
+    }))
+    viewers = list(object({
+      email = string
+      type  = string
+    }))
+  })
+  validation {
+    condition = alltrue(flatten([
+      for _, role_list in var.roles :
+      [for r in role_list : contains(["USER", "GROUP"], r.type)]
+    ]))
+    error_message = "All role types must be USER or GROUP"
+  }
+  default = {
+    administrators = []
+    members        = []
+    supervisors    = []
+    viewers        = []
+  }
 }
 
-variable "supervisor_roles" {
-  type = list(object({
-    email = string
-    type  = string # USER or GROUP
-  }))
-  description = "Supervisors assigned to the project (users or groups)"
-  default     = []
+variable "constraints" {
+  type = object({
+    extensibility = list(object({
+      expression = string
+      mandatory  = bool
+    }))
+    network = list(object({
+      expression = string
+      mandatory  = bool
+    }))
+    storage = list(object({
+      expression = string
+      mandatory  = bool
+    }))
+  })
+
+  default = {
+    extensibility = []
+    network       = []
+    storage       = []
+  }
+
+  description = "Provisioning constraints applied to the project"
 }
 
-variable "viewer_roles" {
-  type = list(object({
-    email = string
-    type  = string # USER or GROUP
-  }))
-  description = "Viewers assigned to the project (users or groups)"
-  default     = []
+variable "shared_resources" {
+  tpe         = bool
+  default     = false
+  description = "Determines if resources are visble only to the owner of them."
+}
+variable "operation_timeout" {
+  tpe         = string
+  default     = 6000
+  description = "Execution timeout for the project"
+}
+
+variable "custom_properties" {
+  type        = map(string)
+  description = "Custom properties applied to all requests in this project"
+  default     = {}
 }
