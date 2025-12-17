@@ -93,7 +93,7 @@ are defined, the project is created without constraint blocks.
 
 ### Contact
 
-scott.bowe@broadcom.com / scottb@sentania.nte
+scott.bowe@broadcom.com / scottb@sentania.net
 
 ---
 
