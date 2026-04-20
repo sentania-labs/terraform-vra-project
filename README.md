@@ -1,4 +1,4 @@
-# terraform-vra-vmapps-project
+# terraform-vra-project
 
 This module provides a complete, opinionated implementation of the
 [`vra_project`](https://registry.terraform.io/providers/vmware/vra/latest/docs/resources/vra_project)
