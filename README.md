@@ -140,7 +140,7 @@ No modules.
 | <a name="input_placement_policy"></a> [placement\_policy](#input\_placement\_policy) | Placement policy applied when selecting a cloud zone for provisioning. Valid values are DEFAULT or SPREAD. | `string` | `"DEFAULT"` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The project name | `string` | n/a | yes |
 | <a name="input_roles"></a> [roles](#input\_roles) | All users or groups must be defined in email/UPN format as expected by the identity provider | <pre>object({<br/>    administrators = list(object({<br/>      email = string<br/>      type  = string<br/>    }))<br/>    members = list(object({<br/>      email = string<br/>      type  = string<br/>    }))<br/>    supervisors = list(object({<br/>      email = string<br/>      type  = string<br/>    }))<br/>    viewers = list(object({<br/>      email = string<br/>      type  = string<br/>    }))<br/>  })</pre> | <pre>{<br/>  "administrators": [],<br/>  "members": [],<br/>  "supervisors": [],<br/>  "viewers": []<br/>}</pre> | no |
-| <a name="input_shared_resources"></a> [shared\_resources](#input\_shared\_resources) | Determines if resources are visble only to the owner of them. | `bool` | `false` | no |
+| <a name="input_shared_resources"></a> [shared\_resources](#input\_shared\_resources) | Determines if resources are visible only to the owner of them. | `bool` | `false` | no |
 
 ## Outputs
 
